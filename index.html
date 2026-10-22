@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101816">
+    <meta name="description" content="Amritpal Kaur — Computer Science Engineering student specializing in Full Stack Development, React, Angular, React Native and data analysis.">
+    <title>Amritpal Kaur | Full Stack Developer</title>
+
+    <!--
+    DESIGN CONCEPT: THE DIGITAL NAVIGATOR
+    A portfolio inspired by the intersection of software engineering,
+    career discovery, and data intelligence. The interface resembles an
+    interactive developer control room: projects are navigable modules,
+    technologies form a connected skill constellation, and the signature
+    hero interaction lets visitors explore Amritpal's work through a
+    command console. Built around her RentUp and EduSphere projects,
+    full-stack development training, and strong academic foundation.
+    -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #101816;
+            --panel: #17211d;
+            --panel-2: #1d2b25;
+            --line: #34483d;
+            --text: #f0f5ed;
+            --muted: #a0b1a5;
+            --green: #b9f56b;
+            --green-soft: #d7ffab;
+            --cyan: #7ce4d0;
+            --orange: #ffb17a;
+            --mono: "DM Mono", monospace;
+            --sans: "Space Grotesk", sans-serif;
+            --width: 1160px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 86px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image: radial-gradient(#789080 0.65px, transparent 0.65px);
+            background-size: 25px 25px;
+            opacity: 0.16;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: 4px;
+        }
+
+        ::selection {
+            color: var(--bg);
+            background: var(--green);
+        }
+
+        .container {
+            width: min(var(--width), calc(100% - 64px));
+            margin-inline: auto;
+        }
+
+        .mono {
+            font-family: var(--mono);
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--green);
+            font: 11px var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            flex: 0 0 7px;
+            background: var(--green);
+            box-shadow: 0 0 12px #b9f56b45;
+        }
+
+        .section {
+            padding: 108px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 30px;
+            margin-bottom: 48px;
+        }
+
+        .section-head h2 {
+            margin-top: 14px;
+            font-size: clamp(38px, 5.7vw, 67px);
+            font-weight: 500;
+            letter-spacing: -.065em;
+            line-height: 1.02;
+        }
+
+        .section-head > p {
+            max-width: 340px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* A compact navigation inspired by a developer's workspace. */
+
+        .nav-shell {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgb(16 24 22 / 91%);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        nav {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .identity {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            white-space: nowrap;
+        }
+
+        .identity-mark {
+            width: 35px;
+            height: 35px;
+            display: grid;
+            place-items: center;
+            border-radius: 5px;
+            background: var(--green);
+            color: var(--bg);
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .identity-name {
+            font: 12px var(--mono);
+        }
+
+        .identity-name small {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font: 11px var(--mono);
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--green);
+        }
+
+        .nav-links .nav-cta {
+            border: 1px solid #66834f;
+            padding: 9px 13px;
+            border-radius: 4px;
+            color: var(--green);
+        }
+
+        .nav-links .nav-cta:hover {
+            color: var(--bg);
+            background: var(--green);
+        }
+
+        /* HERO: personal introduction plus an interactive exploration console. */
+
+        .hero {
+            position: relative;
+            padding: 102px 0 100px;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            align-items: center;
+            gap: 66px;
+            width: 100%;
+        }
+
+        .hero h1 {
+            margin: 28px 0 23px;
+            font-size: clamp(64px, 8.2vw, 108px);
+            font-weight: 500;
+            line-height: .93;
+            letter-spacing: -.09em;
+        }
+
+        .hero h1 .highlight {
+            display: block;
+            color: var(--green);
+        }
+
+        .hero-description {
+            max-width: 475px;
+            margin-bottom: 29px;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .hero-description strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .button {
+            min-height: 47px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 0 17px;
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            font: 11px var(--mono);
+            transition: background .2s ease, color .2s ease, transform .2s ease, border-color .2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-primary {
+            color: var(--bg);
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        .button-primary:hover {
+            background: var(--green-soft);
+        }
+
+        .button-secondary:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .hero-meta {
+            margin-top: 36px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--muted);
+            font: 10px var(--mono);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 12px #b9f56b55;
+        }
+
+        .console {
+            border: 1px solid #405547;
+            border-radius: 9px;
+            background: #111a16;
+            box-shadow: 0 25px 90px #0004;
+            overflow: hidden;
+            transform: rotate(1deg);
+            transition: transform .4s ease;
+        }
+
+        .console:hover {
+            transform: rotate(0) translateY(-4px);
+        }
+
+        .console-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 46px;
+            padding: 0 15px;
+            background: #1a2720;
+            border-bottom: 1px solid var(--line);
+            color: var(--muted);
+            font: 10px var(--mono);
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .window-dots span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #657969;
+        }
+
+        .window-dots span:first-child {
+            background: #ff987a;
+        }
+
+        .window-dots span:nth-child(2) {
+            background: #eac76c;
+        }
+
+        .window-dots span:last-child {
+            background: var(--green);
+        }
+
+        .console-body {
+            padding: 23px 19px 19px;
+            min-height: 305px;
+            font: 11px/2.05 var(--mono);
+        }
+
+        .console-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            overflow-wrap: anywhere;
+        }
+
+        .console-prompt {
+            flex: 0 0 auto;
+            color: var(--green);
+        }
+
+        .console-command {
+            color: var(--text);
+        }
+
+        .console-output {
+            padding: 8px 0 15px 19px;
+            color: var(--muted);
+            overflow-wrap: anywhere;
+        }
+
+        .console-output .key {
+            color: var(--cyan);
+        }
+
+        .console-output .value {
+            color: var(--green);
+        }
+
+        .console-output a {
+            color: var(--green);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .console-input-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding-top: 6px;
+        }
+
+        .console-input {
+            width: 100%;
+            min-width: 0;
+            border: 0;
+            background: transparent;
+            color: var(--text);
+            outline: none;
+            font: 11px var(--mono);
+            caret-color: var(--green);
+        }
+
+        .console-input::placeholder {
+            color: #64766a;
+        }
+
+        .console-hint {
+            margin-top: 9px;
+            color: #718074;
+            font: 9px var(--mono);
+        }
+
+        .hero-index {
+            position: absolute;
+            right: 0;
+            bottom: 27px;
+            color: #718074;
+            font: 10px var(--mono);
+        }
+
+        /* The skill rail feels like a connected technology pipeline. */
+
+        .tech-rail {
+            padding: 25px 0;
+            background: #141e19;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .tech-rail-inner {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .rail-label {
+            color: var(--muted);
+            font: 10px var(--mono);
+            white-space: nowrap;
+        }
+
+        .rail-skills {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 11px 15px;
+        }
+
+        .rail-skills span {
+            color: var(--text);
+            font: 11px var(--mono);
+            white-space: nowrap;
+        }
+
+        .rail-skills span::before {
+            content: "/";
+            color: var(--green);
+            margin-right: 9px;
+        }
+
+        /* Projects are rendered as indexed modules, not generic project cards. */
+
+        .project-index {
+            border-top: 1px solid var(--line);
+        }
+
+        .project-row {
+            display: grid;
+            grid-template-columns: 54px minmax(0, 1fr) 175px;
+            gap: 24px;
+            padding: 34px 0;
+            border-bottom: 1px solid var(--line);
+            align-items: start;
+        }
+
+        .project-no {
+            padding-top: 5px;
+            color: var(--green);
+            font: 11px var(--mono);
+        }
+
+        .project-file {
+            margin-bottom: 10px;
+            color: var(--muted);
+            font: 10px var(--mono);
+        }
+
+        .project-title {
+            margin-bottom: 13px;
+            font-size: clamp(26px, 3.2vw, 39px);
+            font-weight: 500;
+            line-height: 1.13;
+            letter-spacing: -.055em;
+        }
+
+        .project-description {
+            max-width: 580px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 19px;
+        }
+
+        .project-tags span {
+            border: 1px solid #3c5042;
+            border-radius: 3px;
+            padding: 5px 8px;
+            color: #c3d1c4;
+            font: 9px var(--mono);
+        }
+
+        .project-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 14px;
+        }
+
+        .project-category {
+            color: var(--green);
+            font: 10px var(--mono);
+            text-align: right;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        .inspect-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 11px;
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font: 10px var(--mono);
+            transition: border-color .2s ease, color .2s ease;
+        }
+
+        .inspect-button:hover,
+        .inspect-button[aria-expanded="true"] {
+            color: var(--green);
+            border-color: var(--green);
+        }
+
+        .inspect-button .arrow {
+            display: inline-block;
+            transition: transform .2s ease;
+        }
+
+        .inspect-button[aria-expanded="true"] .arrow {
+            transform: rotate(90deg);
+        }
+
+        .project-details {
+            display: none;
+            margin-top: 22px;
+            padding: 17px 19px;
+            border-left: 2px solid var(--green);
+            background: var(--panel);
+            color: var(--muted);
+            font-size: 13px;
+            animation: openDetails .25s ease both;
+        }
+
+        .project-details.open {
+            display: block;
+        }
+
+        .project-details p + p {
+            margin-top: 9px;
+        }
+
+        .project-details strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        @keyframes openDetails {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Skills are grouped by how they fit into a working system. */
+
+        .skill-layout {
+            display: grid;
+            grid-template-columns: .75fr 1.25fr;
+            gap: 70px;
+            align-items: start;
+        }
+
+        .skill-intro {
+            position: sticky;
+            top: 110px;
+        }
+
+        .skill-intro h3 {
+            margin: 19px 0;
+            font-size: clamp(31px, 4vw, 47px);
+            font-weight: 500;
+            line-height: 1.08;
+            letter-spacing: -.06em;
+        }
+
+        .skill-intro p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .skill-groups {
+            border-top: 1px solid var(--line);
+        }
+
+        .skill-group {
+            padding: 22px 0 24px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .skill-group-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .skill-group h3 {
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .skill-group-head span {
+            color: var(--green);
+            font: 10px var(--mono);
+        }
+
+        .skill-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-chip {
+            padding: 7px 10px;
+            background: #1b2921;
+            border: 1px solid #34483a;
+            color: #dce8da;
+            border-radius: 3px;
+            font: 10px var(--mono);
+            transition: transform .2s ease, border-color .2s ease;
+        }
+
+        .skill-chip:hover {
+            transform: translateY(-2px);
+            border-color: var(--green);
+        }
+
+        /* Training: a learning log with real durations and organizations. */
+
+        .learning-log {
+            display: grid;
+            grid-template-columns: .75fr 1.25fr;
+            gap: 70px;
+        }
+
+        .learning-intro p {
+            max-width: 330px;
+            margin-top: 21px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .learning-list {
+            border-left: 1px solid var(--line);
+        }
+
+        .learning-entry {
+            position: relative;
+            padding: 0 0 33px 24px;
+        }
+
+        .learning-entry:last-child {
+            padding-bottom: 0;
+        }
+
+        .learning-entry::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 7px;
+            width: 9px;
+            height: 9px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        .learning-meta {
+            margin-bottom: 8px;
+            color: var(--green);
+            font: 10px var(--mono);
+        }
+
+        .learning-entry h3 {
+            margin-bottom: 8px;
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: -.04em;
+            line-height: 1.25;
+        }
+
+        .learning-entry p {
+            max-width: 510px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Education uses an academic score panel, grounded in resume data. */
+
+        .education-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid var(--line);
+            background: var(--panel);
+        }
+
+        .education-main {
+            padding: 38px;
+        }
+
+        .education-date {
+            color: var(--green);
+            font: 10px var(--mono);
+        }
+
+        .education-main h3 {
+            margin: 20px 0 13px;
+            font-size: clamp(27px, 3.6vw, 42px);
+            font-weight: 500;
+            line-height: 1.1;
+            letter-spacing: -.06em;
+        }
+
+        .education-main p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .education-scores {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-left: 1px solid var(--line);
+        }
+
+        .score {
+            min-height: 128px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 23px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .score:nth-child(even) {
+            border-left: 1px solid var(--line);
+        }
+
+        .score:nth-last-child(-n+2) {
+            border-bottom: 0;
+        }
+
+        .score strong {
+            color: var(--green);
+            font-size: clamp(29px, 4vw, 43px);
+            font-weight: 500;
+            letter-spacing: -.06em;
+            line-height: 1.2;
+        }
+
+        .score span {
+            margin-top: 9px;
+            color: var(--muted);
+            font: 9px var(--mono);
+        }
+
+        .certificates {
+            margin-top: 55px;
+        }
+
+        .certificates h3 {
+            margin-bottom: 22px;
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: -.03em;
+        }
+
+        .certificate-list {
+            list-style: none;
+            border-top: 1px solid var(--line);
+        }
+
+        .certificate-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            padding: 17px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+        }
+
+        .certificate-list li::before {
+            content: "↳";
+            color: var(--green);
+            font: 13px var(--mono);
+        }
+
+        /* Contact closes the experience like a clean system exit. */
+
+        .contact {
+            padding: 104px 0 35px;
+            border-top: 1px solid var(--line);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 70px;
+            align-items: end;
+        }
+
+        .contact h2 {
+            margin: 22px 0 25px;
+            font-size: clamp(52px, 8vw, 91px);
+            font-weight: 500;
+            line-height: .98;
+            letter-spacing: -.08em;
+        }
+
+        .contact h2 span {
+            color: var(--green);
+        }
+
+        .contact-copy {
+            max-width: 440px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .contact-list {
+            border-top: 1px solid var(--line);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 17px 0;
+            border-bottom: 1px solid var(--line);
+            font: 11px var(--mono);
+            transition: color .2s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--green);
+        }
+
+        .contact-item .contact-label {
+            color: var(--muted);
+            flex: 0 0 auto;
+        }
+
+        .contact-item .contact-value {
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 95px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+            color: #839488;
+            font: 9px var(--mono);
+        }
+
+        footer a:hover {
+            color: var(--green);
+        }
+
+        /* Viewport reveal; automatically disabled for reduced-motion preferences. */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .65s ease, transform .65s cubic-bezier(.2,.65,.25,1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 950px) {
+            .container {
+                width: min(var(--width), calc(100% - 44px));
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 85px 0 100px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero h1 {
+                font-size: clamp(67px, 12vw, 103px);
+            }
+
+            .console {
+                width: min(100%, 650px);
+                transform: none;
+            }
+
+            .console:hover {
+                transform: translateY(-3px);
+            }
+
+            .project-row {
+                grid-template-columns: 40px minmax(0, 1fr) 150px;
+                gap: 17px;
+            }
+
+            .skill-layout,
+            .learning-log {
+                gap: 35px;
+            }
+
+            .contact-grid {
+                gap: 35px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .container {
+                width: calc(100% - 36px);
+            }
+
+            .section {
+                padding: 78px 0;
+            }
+
+            nav {
+                min-height: 64px;
+            }
+
+            .identity-name {
+                font-size: 10px;
+            }
+
+            .nav-links {
+                gap: 13px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .nav-links li:nth-child(2),
+            .nav-links li:nth-child(4) {
+                display: none;
+            }
+
+            .nav-links .nav-cta {
+                padding: 8px 9px;
+            }
+
+            .hero {
+                padding: 72px 0 87px;
+            }
+
+            .hero h1 {
+                font-size: clamp(57px, 14vw, 83px);
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-meta {
+                margin-top: 27px;
+                font-size: 9px;
+            }
+
+            .console-body {
+                min-height: 290px;
+                padding: 20px 13px;
+                font-size: 10px;
+            }
+
+            .console-input {
+                font-size: 10px;
+            }
+
+            .hero-index {
+                bottom: 19px;
+            }
+
+            .tech-rail-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .rail-skills {
+                gap: 10px 12px;
+            }
+
+            .rail-skills span {
+                font-size: 10px;
+            }
+
+            .section-head {
+                display: block;
+                margin-bottom: 34px;
+            }
+
+            .section-head h2 {
+                font-size: 46px;
+            }
+
+            .section-head > p {
+                margin-top: 16px;
+                font-size: 13px;
+            }
+
+            .project-row {
+                grid-template-columns: 30px minmax(0, 1fr);
+                gap: 12px;
+                padding: 27px 0;
+            }
+
+            .project-title {
+                font-size: 29px;
+            }
+
+            .project-description {
+                font-size: 13px;
+            }
+
+            .project-side {
+                grid-column: 2;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                margin-top: 17px;
+            }
+
+            .project-category {
+                text-align: left;
+            }
+
+            .project-details {
+                padding: 14px;
+                font-size: 12px;
+            }
+
+            .skill-layout,
+            .learning-log {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .skill-intro {
+                position: static;
+            }
+
+            .skill-intro h3 {
+                font-size: 39px;
+            }
+
+            .education-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .education-main {
+                padding: 27px 23px;
+            }
+
+            .education-scores {
+                border-left: 0;
+                border-top: 1px solid var(--line);
+            }
+
+            .score {
+                min-height: 110px;
+                padding: 18px;
+            }
+
+            .score strong {
+                font-size: 34px;
+            }
+
+            .certificate-list li {
+                font-size: 12px;
+                gap: 11px;
+            }
+
+            .contact {
+                padding-top: 78px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 37px;
+            }
+
+            .contact h2 {
+                font-size: clamp(55px, 13vw, 76px);
+            }
+
+            .contact-item {
+                font-size: 10px;
+            }
+
+            footer {
+                margin-top: 65px;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 370px) {
+            .identity-name {
+                display: none;
+            }
+
+            .nav-links {
+                gap: 11px;
+            }
+
+            .hero h1 {
+                font-size: 53px;
+            }
+
+            .button {
+                padding: 0 12px;
+                font-size: 10px;
+            }
+
+            .console-body {
+                font-size: 9px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav-shell">
+        <nav class="container" aria-label="Main navigation">
+            <a class="identity" href="#home" aria-label="Amritpal Kaur, home">
+                <span class="identity-mark">A.</span>
+                <span class="identity-name">
+                    amritpal.kaur
+                    <small>FULL STACK / CS ENGINEERING</small>
+                </span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#projects">/work</a></li>
+                <li><a href="#skills">/stack</a></li>
+                <li><a href="#education">/study</a></li>
+                <li><a class="nav-cta" href="#contact">Connect ↗</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container" id="home">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <div class="eyebrow">Computer Science · Full Stack Development</div>
+
+                    <h1>
+                        Ideas into
+                        <span class="highlight">interfaces.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        I'm <strong>Amritpal Kaur</strong>, a Computer Science Engineering
+                        student focused on full stack development. I enjoy building
+                        practical applications, creating intuitive user experiences,
+                        and exploring how technology can make everyday decisions easier.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#projects">
+                            Explore my projects <span>↘</span>
+                        </a>
+                        <a class="button button-secondary" href="mailto:kamritpal8294@gmail.com">
+                            Contact me ↗
+                        </a>
+                    </div>
+
+                    <div class="hero-meta">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span>JALANDHAR, PUNJAB, INDIA</span>
+                        <span>·</span>
+                        <span>B.TECH 2023–2027</span>
+                    </div>
+                </div>
+
+                <div class="console" aria-label="Interactive portfolio console">
+                    <div class="console-top">
+                        <div class="window-dots" aria-hidden="true">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span>amritpal@workspace:~</span>
+                        <span>console</span>
+                    </div>
+
+                    <div class="console-body" id="console-body">
+                        <div class="console-line">
+                            <span class="console-prompt">➜</span>
+                            <span class="console-command">whoami</span>
+                        </div>
+
+                        <div class="console-output">
+                            <span class="value">amritpal kaur</span><br>
+                            computer science engineering student<br>
+                            specialization: full stack development
+                        </div>
+
+                        <div class="console-line">
+                            <span class="console-prompt">➜</span>
+                            <span class="console-command">cat strengths.json</span>
+                        </div>
+
+                        <div class="console-output">
+                            {<br>
+                            &nbsp; <span class="key">"frontend"</span>: <span class="value">"React, Angular"</span>,<br>
+                            &nbsp; <span class="key">"mobile"</span>: <span class="value">"React Native"</span>,<br>
+                            &nbsp; <span class="key">"analytics"</span>: <span class="value">"Power BI"</span>,<br>
+                            &nbsp; <span class="key">"approach"</span>: <span class="value">"learn by building"</span><br>
+                            }
+                        </div>
+
+                        <div class="console-input-row">
+                            <span class="console-prompt">➜</span>
+                            <input
+                                class="console-input"
+                                id="console-input"
+                                type="text"
+                                autocomplete="off"
+                                spellcheck="false"
+                                aria-label="Enter a portfolio console command"
+                                placeholder="Type help and press Enter"
+                            >
+                        </div>
+
+                        <div class="console-hint">TRY: help · projects · skills · contact</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-index">01 / SYSTEM INTRODUCTION</div>
+        </section>
+
+        <section class="tech-rail" aria-label="Technology overview">
+            <div class="container tech-rail-inner">
+                <span class="rail-label">TECHNOLOGIES IN MY TOOLKIT //</span>
+                <div class="rail-skills">
+                    <span>React.js</span>
+                    <span>Angular</span>
+                    <span>React Native</span>
+                    <span>JavaScript</span>
+                    <span>Node.js</span>
+                    <span>Express.js</span>
+                    <span>Power BI</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="eyebrow">02 / Project directory</div>
+                        <h2>Built to solve<br>real problems.</h2>
+                    </div>
+                    <p>
+                        Three projects exploring property discovery, career guidance,
+                        and personal presentation through responsive web interfaces.
+                    </p>
+                </div>
+
+                <div class="project-index">
+                    <article class="project-row reveal">
+                        <div class="project-no">01</div>
+
+                        <div>
+                            <div class="project-file">projects / rentup / app.jsx</div>
+                            <h3 class="project-title">RentUp</h3>
+                            <p class="project-description">
+                                A rental web application designed to make browsing
+                                property listings more convenient, with reusable
+                                interface components and dynamic property filtering
+                                to simplify the search experience.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>React.js</span>
+                                <span>Property Listings</span>
+                                <span>Dynamic Filtering</span>
+                                <span>Reusable UI</span>
+                            </div>
+
+                            <div class="project-details" id="rentup-details">
+                                <p><strong>Core functionality:</strong> Browse and explore rental property listings and filter properties dynamically.</p>
+                                <p><strong>Development focus:</strong> Reusable UI components for a consistent experience across the application.</p>
+                                <p><strong>Design objective:</strong> Make property discovery easier through organized listings and a straightforward browsing experience.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-side">
+                            <span class="project-category">Rental platform</span>
+                            <button class="inspect-button" type="button" aria-expanded="false" aria-controls="rentup-details">
+                                Inspect module <span class="arrow">↗</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="project-row reveal">
+                        <div class="project-no">02</div>
+
+                        <div>
+                            <div class="project-file">projects / edusphere / app.jsx</div>
+                            <h3 class="project-title">EduSphere</h3>
+                            <p class="project-description">
+                                A career guidance platform that helps students explore
+                                career options aligned with their interests and goals,
+                                bringing professional pathways and career resources
+                                together in an interactive interface.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>React.js</span>
+                                <span>Career Guidance</span>
+                                <span>Interactive UI</span>
+                                <span>Student Resources</span>
+                            </div>
+
+                            <div class="project-details" id="edusphere-details">
+                                <p><strong>Core functionality:</strong> Present career information and different professional pathways in an interactive interface.</p>
+                                <p><strong>Development focus:</strong> Organize career resources so students can explore information more clearly.</p>
+                                <p><strong>Design objective:</strong> Support informed academic and career decisions through accessible presentation of information.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-side">
+                            <span class="project-category">Career discovery</span>
+                            <button class="inspect-button" type="button" aria-expanded="false" aria-controls="edusphere-details">
+                                Inspect module <span class="arrow">↗</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="project-row reveal">
+                        <div class="project-no">03</div>
+
+                        <div>
+                            <div class="project-file">projects / portfolio / app.module.ts</div>
+                            <h3 class="project-title">Portfolio Website</h3>
+                            <p class="project-description">
+                                A personal portfolio developed with Angular to present
+                                projects, technical skills, and academic achievements
+                                through an organized and responsive interface.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>Angular</span>
+                                <span>Modular Structure</span>
+                                <span>Responsive UI</span>
+                                <span>Accessibility</span>
+                            </div>
+
+                            <div class="project-details" id="portfolio-details">
+                                <p><strong>Core functionality:</strong> Showcase technical skills, projects, and academic achievements in one place.</p>
+                                <p><strong>Development focus:</strong> A modular Angular structure and responsive interface.</p>
+                                <p><strong>Design objective:</strong> Improve navigation and accessibility through organized content.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-side">
+                            <span class="project-category">Personal website</span>
+                            <button class="inspect-button" type="button" aria-expanded="false" aria-controls="portfolio-details">
+                                Inspect module <span class="arrow">↗</span>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="eyebrow">03 / Technology map</div>
+                        <h2>My development<br>stack.</h2>
+                    </div>
+                    <p>
+                        A practical mix of interface development, backend technologies,
+                        computer science fundamentals, and data analysis.
+                    </p>
+                </div>
+
+                <div class="skill-layout">
+                    <div class="skill-intro reveal">
+                        <div class="eyebrow">How the pieces connect</div>
+                        <h3>From the user interface to the underlying logic.</h3>
+                        <p>
+                            My learning spans multiple layers of application development,
+                            alongside programming fundamentals and analytical tools.
+                        </p>
+                    </div>
+
+                    <div class="skill-groups reveal">
+                        <div class="skill-group">
+                            <div class="skill-group-head">
+                                <h3>01. Frontend development</h3>
+                                <span>INTERFACE</span>
+                            </div>
+                            <div class="skill-chips">
+                                <span class="skill-chip">HTML</span>
+                                <span class="skill-chip">CSS</span>
+                                <span class="skill-chip">JavaScript</span>
+                                <span class="skill-chip">React.js</span>
+                                <span class="skill-chip">Angular</span>
+                                <span class="skill-chip">React Native</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-head">
+                                <h3>02. Backend development</h3>
+                                <span>APPLICATION LOGIC</span>
+                            </div>
+                            <div class="skill-chips">
+                                <span class="skill-chip">Node.js</span>
+                                <span class="skill-chip">Express.js</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-head">
+                                <h3>03. Programming languages</h3>
+                                <span>FOUNDATIONS</span>
+                            </div>
+                            <div class="skill-chips">
+                                <span class="skill-chip">Java</span>
+                                <span class="skill-chip">Python</span>
+                                <span class="skill-chip">C</span>
+                                <span class="skill-chip">C++</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-head">
+                                <h3>04. Computer science concepts</h3>
+                                <span>CORE CS</span>
+                            </div>
+                            <div class="skill-chips">
+                                <span class="skill-chip">DBMS</span>
+                                <span class="skill-chip">Data Structures</span>
+                                <span class="skill-chip">OOP</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-head">
+                                <h3>05. Data and analytics</h3>
+                                <span>INSIGHTS</span>
+                            </div>
+                            <div class="skill-chips">
+                                <span class="skill-chip">Data Analysis Fundamentals</span>
+                                <span class="skill-chip">Power BI</span>
+                                <span class="skill-chip">Data Interpretation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="experience">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="eyebrow">04 / Training log</div>
+                        <h2>Learning by<br>doing.</h2>
+                    </div>
+                    <p>
+                        Structured training and practical exposure across React,
+                        mobile application development, and data analysis.
+                    </p>
+                </div>
+
+                <div class="learning-log">
+                    <div class="learning-intro reveal">
+                        <div class="eyebrow">Practical development</div>
+                        <p>
+                            Each training experience adds another perspective to
+                            how applications are designed, how data is interpreted,
+                            and how reusable components support development.
+                        </p>
+                    </div>
+
+                    <div class="learning-list reveal">
+                        <article class="learning-entry">
+                            <div class="learning-meta">45 DAYS / MOBILE DEVELOPMENT</div>
+                            <h3>React Native Trainee</h3>
+                            <p class="learning-meta">AMEOTECH INFORMATICS</p>
+                            <p>
+                                Training in cross-platform mobile application development
+                                using React Native, including mobile UI design and
+                                reusable components.
+                            </p>
+                        </article>
+
+                        <article class="learning-entry">
+                            <div class="learning-meta">45 DAYS / WEB DEVELOPMENT</div>
+                            <h3>React Trainee</h3>
+                            <p class="learning-meta">EXCELLENCE TECHNOLOGY, MOHALI</p>
+                            <p>
+                                Practical training in React.js, responsive web
+                                interfaces, reusable components, and state and
+                                props management.
+                            </p>
+                        </article>
+
+                        <article class="learning-entry">
+                            <div class="learning-meta">14 DAYS / DATA ANALYSIS</div>
+                            <h3>Data Analyst Trainee</h3>
+                            <p class="learning-meta">GNA UNIVERSITY, PHAGWARA</p>
+                            <p>
+                                Training conducted by ICT Academy and Infosys,
+                                covering data analysis, data interpretation,
+                                and analytical skills.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="education">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="eyebrow">05 / Academic profile</div>
+                        <h2>Strong foundations.<br>Clear direction.</h2>
+                    </div>
+                    <p>
+                        Computer Science Engineering, with a focus on full stack
+                        development and a strong academic record.
+                    </p>
+                </div>
+
+                <div class="education-panel reveal">
+                    <div class="education-main">
+                        <div class="education-date">2023 — 2027 / PHAGWARA, PUNJAB</div>
+                        <h3>B.Tech in Computer Science Engineering</h3>
+                        <p>GNA University</p>
+                        <p>Specialization: Full Stack Development</p>
+                    </div>
+
+                    <div class="education-scores">
+                        <div class="score">
+                            <strong>9.56</strong>
+                            <span>CGPA / 10</span>
+                        </div>
+                        <div class="score">
+                            <strong>94%</strong>
+                            <span>CLASS X / 2021</span>
+                        </div>
+                        <div class="score">
+                            <strong>81%</strong>
+                            <span>CLASS XII / 2023</span>
+                        </div>
+                        <div class="score">
+                            <strong>2027</strong>
+                            <span>EXPECTED GRADUATION</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificates reveal">
+                    <div class="eyebrow">Additional credentials</div>
+                    <h3 style="margin-top: 14px;">Certifications & training</h3>
+
+                    <ul class="certificate-list">
+                        <li>ICT Academy — Data Analyst Training Certificate</li>
+                        <li>UiPath Automation Developer Associate Training (v2024.10)</li>
+                        <li>Red Hat System Administration (RH124)</li>
+                        <li>AWS Academy Graduate — AWS Academy Data Center Technician</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="reveal">
+                        <div class="eyebrow">06 / Open connection</div>
+                        <h2>Have an idea?<br><span>Let's connect.</span></h2>
+                        <p class="contact-copy">
+                            I'm interested in building useful digital experiences
+                            and continuing to grow as a developer. Get in touch
+                            to discuss opportunities, development, or collaboration.
+                        </p>
+                    </div>
+
+                    <div class="contact-list reveal">
+                        <a class="contact-item" href="mailto:kamritpal8294@gmail.com">
+                            <span class="contact-label">EMAIL</span>
+                            <span class="contact-value">kamritpal8294@gmail.com ↗</span>
+                        </a>
+
+                        <a class="contact-item" href="https://github.com/Amritparmar31" target="_blank" rel="noopener noreferrer">
+                            <span class="contact-label">GITHUB</span>
+                            <span class="contact-value">Amritparmar31 ↗</span>
+                        </a>
+
+                        <a class="contact-item" href="https://linkedin.com/in/amritpal-kaur-4417ba2a0" target="_blank" rel="noopener noreferrer">
+                            <span class="contact-label">LINKEDIN</span>
+                            <span class="contact-value">Amritpal Kaur ↗</span>
+                        </a>
+
+                        <a class="contact-item" href="tel:+918968528294">
+                            <span class="contact-label">PHONE</span>
+                            <span class="contact-value">+91 89685 28294 ↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <footer>
+                    <span>AMRITPAL KAUR / FULL STACK DEVELOPMENT</span>
+                    <span>DESIGNED AROUND CURIOSITY</span>
+                    <a href="#home">BACK TO TOP ↑</a>
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        (() => {
+            "use strict";
+
+            const reduceMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            // Reveal sections as they enter the viewport.
+            const revealElements = document.querySelectorAll(".reveal");
+
+            if (reduceMotion || !("IntersectionObserver" in window)) {
+                revealElements.forEach(element => {
+                    element.classList.add("visible");
+                });
+            } else {
+                const revealObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -35px 0px"
+                });
+
+                revealElements.forEach(element => {
+                    revealObserver.observe(element);
+                });
+            }
+
+            // Expand and collapse the project inspection panels.
+            document.querySelectorAll(".inspect-button").forEach(button => {
+                button.addEventListener("click", () => {
+                    const target = document.getElementById(
+                        button.getAttribute("aria-controls")
+                    );
+
+                    const isOpen = button.getAttribute("aria-expanded") === "true";
+
+                    button.setAttribute("aria-expanded", String(!isOpen));
+                    target.classList.toggle("open", !isOpen);
+
+                    const label = button.childNodes[0];
+
+                    if (label && label.nodeType === Node.TEXT_NODE) {
+                        label.textContent = isOpen ? "Inspect module " : "Close module ";
+                    }
+                });
+            });
+
+            // Interactive console with a small set of portfolio commands.
+            const consoleInput = document.getElementById("console-input");
+            const consoleBody = document.getElementById("console-body");
+
+            const responses = {
+                help: `
+                    <span class="value">COMMAND DIRECTORY</span><br>
+                    &nbsp; help &nbsp;&nbsp;&nbsp; → show available commands<br>
+                    &nbsp; projects → explore selected projects<br>
+                    &nbsp; skills &nbsp; → inspect technical skills<br>
+                    &nbsp; contact → view contact information<br>
+                    &nbsp; clear &nbsp;&nbsp; → clear previous output
+                `,
+
+                projects: `
+                    <span class="value">PROJECT INDEX</span><br>
+                    &nbsp; 01 / RentUp — rental web application<br>
+                    &nbsp; 02 / EduSphere — career guidance platform<br>
+                    &nbsp; 03 / Portfolio Website — Angular<br>
+                    <br>
+                    <a href="#projects">Navigate to projects ↗</a>
+                `,
+
+                skills: `
+                    <span class="value">TECHNICAL SKILLS</span><br>
+                    &nbsp; Frontend: HTML, CSS, JavaScript, React, Angular<br>
+                    &nbsp; Mobile: React Native<br>
+                    &nbsp; Backend: Node.js, Express.js<br>
+                    &nbsp; Languages: Java, Python, C, C++<br>
+                    &nbsp; Core CS: DBMS, Data Structures, OOP<br>
+                    &nbsp; Analytics: Power BI, data analysis fundamentals
+                `,
+
+                contact: `
+                    <span class="value">CONTACT ENDPOINTS</span><br>
+                    &nbsp; Email: <a href="mailto:kamritpal8294@gmail.com">kamritpal8294@gmail.com</a><br>
+                    &nbsp; GitHub: <a href="https://github.com/Amritparmar31" target="_blank" rel="noopener noreferrer">GitHub profile</a><br>
+                    &nbsp; LinkedIn: <a href="https://linkedin.com/in/amritpal-kaur-4417ba2a0" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>
+                `
+            };
+
+            function escapeHTML(text) {
+                return text.replace(/[&<>"']/g, character => ({
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                })[character]);
+            }
+
+            function executeCommand(rawCommand) {
+                const command = rawCommand.trim().toLowerCase();
+
+                if (!command) return;
+
+                if (command === "clear") {
+                    const inputRow = consoleBody.querySelector(".console-input-row");
+                    const hint = consoleBody.querySelector(".console-hint");
+
+                    consoleBody.replaceChildren(inputRow, hint);
+                    consoleInput.value = "";
+                    return;
+                }
+
+                const output = responses[command] || `
+                    <span class="value">Command not found:</span> ${escapeHTML(rawCommand)}<br>
+                    Type <span class="value">help</span> for available commands.
+                `;
+
+                const entry = document.createElement("div");
+
+                entry.innerHTML = `
+                    <div class="console-line">
+                        <span class="console-prompt">➜</span>
+                        <span class="console-command">${escapeHTML(rawCommand)}</span>
+                    </div>
+                    <div class="console-output">${output}</div>
+                `;
+
+                const inputRow = consoleBody.querySelector(".console-input-row");
+                consoleBody.insertBefore(entry, inputRow);
+                consoleInput.value = "";
+
+                if (!reduceMotion) {
+                    consoleInput.scrollIntoView({
+                        behavior: "smooth",
+                        block: "nearest"
+                    });
+                }
+            }
+
+            consoleInput.addEventListener("keydown", event => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    executeCommand(consoleInput.value);
+                }
+            });
+
+            // Highlight navigation links when their matching section is visible.
+            const navigationLinks = document.querySelectorAll(
+                '.nav-links a[href^="#"]'
+            );
+            const sections = document.querySelectorAll("main section[id]");
+
+            if ("IntersectionObserver" in window) {
+                const navigationObserver = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+
+                        navigationLinks.forEach(link => {
+                            const isCurrent =
+                                link.getAttribute("href") === "#" + entry.target.id;
+
+                            link.classList.toggle("active", isCurrent);
+                        });
+                    });
+                }, {
+                    rootMargin: "-25% 0px -65% 0px"
+                });
+
+                sections.forEach(section => {
+                    navigationObserver.observe(section);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
